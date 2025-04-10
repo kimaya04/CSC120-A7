@@ -4,15 +4,21 @@ import java.util.Hashtable;
 
 public class Library extends Building implements LibraryRequirements {
 
+  // Attributes
   private Hashtable<String, Boolean> collection;
 
-
+  /* Constructor */
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
       collection = new Hashtable<String, Boolean>();
       System.out.println("You have built a library: 📖");
     }
 
+    /**
+     * Adds a title to the library's collection.
+     * Prints error message if title is already in the collection.
+     * @param title The title to be added.
+     */
     public void addTitle(String title) {
       if (title != null) {
         if (!this.containsTitle(title)) {
@@ -24,6 +30,12 @@ public class Library extends Building implements LibraryRequirements {
       }
     }
 
+    /**
+     * Removes a title from the library's collection.
+     * Prints error message if the title is not in the collection.
+     * @param title The title to be removed.
+     * @return The title that was removed, or null if the title was not found.
+     */
     public String removeTitle(String title) {
       if (title != null) {
         if (this.containsTitle(title)) {
@@ -35,6 +47,11 @@ public class Library extends Building implements LibraryRequirements {
       return null;
     }
 
+    /**
+     * Checks out a book from the library's collection.
+     * Prints error message if the title is not in the collection or is already checked out.
+     * @param title The title to be checked out.
+     */
     public void checkOut(String title) {
       if (this.containsTitle(title)) {
         collection.replace(title, false);
@@ -44,6 +61,11 @@ public class Library extends Building implements LibraryRequirements {
       }
     }
 
+    /**
+     * Returns a book to the library's collection.
+     * Prints error message if the title is not in the collection or is already available.
+     * @param title The title to be returned.
+     */
     public void returnBook(String title) {
       if (this.containsTitle(title)) {
         collection.replace(title, true);
@@ -53,7 +75,11 @@ public class Library extends Building implements LibraryRequirements {
       }
     }
 
-    // returns true if the title appears as a key in the Libary's collection, false otherwise
+    /**
+     * Checks if the library's collection contains a specific title.
+     * @param title The title to check for.
+     * @return true if the title is in the collection, false otherwise.
+     */
     public boolean containsTitle(String title) {
       if (title != null) {
         return collection.containsKey(title);
@@ -61,7 +87,11 @@ public class Library extends Building implements LibraryRequirements {
       return false;
     } 
 
-    // returns true if the title is currently available, false otherwise
+    /**
+     * Checks if a title is available in the library's collection.
+     * @param title The title to check for.
+     * @return true if the title is available, false otherwise.
+     */ 
     public boolean isAvailable(String title) {
       if (title != null) {
         if (collection.containsKey(title)) {
@@ -71,7 +101,10 @@ public class Library extends Building implements LibraryRequirements {
       return false;
     }
 
-    // prints out the entire collection in an easy-to-read way (including checkout status)
+    /**
+     * Prints the library's entire collection.
+     * Displays each title and its availability status.
+     */
     public void printCollection() {
       System.out.println("Library Collection:");
       String status = "";

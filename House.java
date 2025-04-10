@@ -3,10 +3,12 @@ import java.util.ArrayList;
 
 public class House extends Building implements HouseRequirements{
 
+  // Attributes
   private ArrayList<Student> residents;
   private boolean hasDiningRoom;
   private int nResidents;
 
+  /* Constructor */
   public House(String name, String address, int nFloors, boolean DiningRoom) {
     super(name, address, nFloors);
     System.out.println("You have built a house: 🏠");
@@ -14,20 +16,37 @@ public class House extends Building implements HouseRequirements{
     hasDiningRoom = DiningRoom;
   }
 
+  /**
+   * Checks if the house has a dining room.
+   * @return true if the house has a dining room, false otherwise
+   */
   public boolean hasDiningRoom() {
     return hasDiningRoom;
   }
 
+  /**
+   * Returns the number of residents in the house.
+   * @return the number of residents
+   */
   public int nResidents() {
     return nResidents;
   }
 
+  /**
+   * Adds a student to the list of residents.
+   * @param s the student to be added
+   */
   public void moveIn(Student s) {
     residents.add(s);
     nResidents++;
     System.out.println(s.getName() + " has moved in.");
   }
 
+  /**
+   * Removes a student from the list of residents.
+   * @param s the student to be removed
+   * @return the removed student, or null if the student was not a resident
+   */
   public Student moveOut(Student s) {
     if (residents.contains(s)) {
       residents.remove(s);
@@ -40,6 +59,11 @@ public class House extends Building implements HouseRequirements{
     }
   }
 
+  /**
+   * Checks if a student is a resident of the house.
+   * @param s the student to check
+   * @return true if the student is a resident, false otherwise
+   */
   public boolean isResident(Student s) {
     if (residents.contains(s)) {
       return true;
